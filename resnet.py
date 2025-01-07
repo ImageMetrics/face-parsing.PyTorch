@@ -80,7 +80,7 @@ class Resnet18(nn.Module):
         return feat8, feat16, feat32
 
     def init_weight(self):
-        state_dict = modelzoo.load_url(resnet18_url)
+        state_dict = modelzoo.load_url(resnet18_url, map_location=lambda storage, loc: storage.cuda())
         self_state_dict = self.state_dict()
         for k, v in state_dict.items():
             if 'fc' in k: continue
